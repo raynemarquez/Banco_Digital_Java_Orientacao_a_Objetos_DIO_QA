@@ -84,10 +84,15 @@ public class Main {
                 System.out.println("Transferência");
                 System.out.println("Valor da transferencia: ");
                 double valorTransferencia = leitor.nextDouble();
-                contaCorrenteTeste.transferir(valorTransferencia, contaPoupancaTeste);
-                System.out.println("Transferido valor da conta corrente para poupança");
-                contaCorrenteTeste.imprimirExtrato();
-                contaPoupancaTeste.imprimirExtrato();
+                try{
+                    contaCorrenteTeste.transferir(valorTransferencia, contaPoupancaTeste);
+                    System.out.println("Transferido valor da conta corrente para poupança");
+                    contaCorrenteTeste.imprimirExtrato();
+                    contaPoupancaTeste.imprimirExtrato();
+                    break;
+                }catch (Exception e){
+                    System.err.println("Houve um erro ao transferir o valor entre as conta: " + e.getMessage());
+                }
                 break;
             case 6:
                 System.out.println("Extrato da Conta");

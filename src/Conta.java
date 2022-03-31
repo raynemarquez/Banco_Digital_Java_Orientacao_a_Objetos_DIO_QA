@@ -16,10 +16,15 @@ public abstract class Conta implements IConta{
 
     @Override
     public void sacar(double valor) {
-        if (this.saldo >= valor){
-            this.saldo -= valor;
-        }else{
-            System.err.println("Saldo indisponivel");
+        if(valor>0) {
+            if (this.saldo >= valor) {
+                this.saldo -= valor;
+            } else {
+                throw new RuntimeException("Saldo indisponivel");
+            }
+        }
+        else{
+            throw new RuntimeException("Valor deve ser positivo");
         }
     }
 
@@ -28,17 +33,17 @@ public abstract class Conta implements IConta{
         if (valor>0){
             this.saldo += valor;
         }else{
-            System.err.println("Valor deve ser positivo");
+            throw new RuntimeException("Valor deve ser positivo");
         }
     }
 
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        if(this.saldo <= valor){
+        if(this.saldo >= valor){
             this.sacar(valor);
             contaDestino.depositar(valor);
         }else{
-            System.err.println("Saldo indisponivel");
+            throw new RuntimeException("Saldo indisponivel");
         }
     }
 
