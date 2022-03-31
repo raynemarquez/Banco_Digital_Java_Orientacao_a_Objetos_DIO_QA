@@ -47,6 +47,16 @@ public class Cliente {
         System.out.println(String.format("Tipo: %s", this.getTipo()));
     }
 
+    @Override
+    public String toString() {
+        return "Cliente {" +
+                "codigo = " + codigo +
+                ", nome = '" + nome + '\'' +
+                ", documento = '" + documento + '\'' +
+                ", tipo = " + tipo +
+                '}';
+    }
+
     public String getDocumento() {
         return documento;
     }
@@ -79,7 +89,4 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
-
 }

@@ -10,6 +10,10 @@ public class Main {
         contaCorrenteTeste.depositar(1000);
         contaPoupancaTeste.depositar(2000);
 
+        BancoDigital banco = new BancoDigital();
+        banco.adicionaConta(contaCorrenteTeste);
+        banco.adicionaConta(contaPoupancaTeste);
+
         System.out.println("Digite a opcao desejada:");
         System.out.println("[1] - Cadastrar um cliente");
         System.out.println("[2] - Cadastrar uma conta");
@@ -17,6 +21,7 @@ public class Main {
         System.out.println("[4] - Fazer um saque");
         System.out.println("[5] - Fazer uma transferencia");
         System.out.println("[6] - Imprimir extrato da conta");
+        System.out.println("[7] - Listar Contas do Banco");
         System.out.println("[0] - Sair");
         int opcao = leitor.nextInt();
 
@@ -98,6 +103,10 @@ public class Main {
                 System.out.println("Extrato da Conta");
                 contaCorrenteTeste.imprimirExtrato();
                 break;
+            case 7:
+                for (Conta conta: banco.getContas()) {
+                    System.out.println(conta.toString());
+                }
             case 0 :
                 System.exit(0);
             default:

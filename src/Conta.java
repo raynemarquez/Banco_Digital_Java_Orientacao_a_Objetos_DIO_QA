@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Conta implements IConta{
 
     private static final int AGENCIA_PADRAO = 1;
@@ -7,6 +10,22 @@ public abstract class Conta implements IConta{
     protected int NumeroConta;
     protected double saldo;
     protected Cliente cliente;
+    private List<Conta> contas;
+
+    public void adicionaConta(Conta conta){
+        if(conta == null){
+            throw new NullPointerException("Conta nao pode ser nulo");
+        }
+
+        getContas().add(conta);
+    }
+
+    private List<Conta> getContas() {
+        if(contas == null){
+            contas = new ArrayList<Conta>();
+        }
+        return contas;
+    }
 
     public Conta(Cliente cliente) {
         this.agencia = Conta.AGENCIA_PADRAO;
@@ -52,6 +71,16 @@ public abstract class Conta implements IConta{
         System.out.println(String.format("Agencia: %d", this.agencia));
         System.out.println(String.format("Numero: %d", this.NumeroConta));
         System.out.println(String.format("Saldo: %.2f", this.saldo));
+    }
+
+    @Override
+    public String toString() {
+        return "Conta { " +
+                "agencia = " + agencia +
+                ", NumeroConta = " + NumeroConta +
+                ", saldo = " + saldo +
+                ", cliente = " + cliente.toString() +
+                '}';
     }
 
     public int getAgencia() {
